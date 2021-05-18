@@ -4,18 +4,19 @@ import java.util.Date;
 
 public class QnaDto {
 	private int no;
-	private String userid,title,contents,reply;
+	private String userid,title,contents,repl;
 	private Date regdate;
 	
 	private String loginId;
 	
-	public QnaDto(int no, String userid, String title, String contents, String reply, Date regdate) {
+	
+	public QnaDto(int no, String userid, String title, String contents, String repl, Date regdate) {
 		super();
 		this.no = no;
 		this.userid = userid;
 		this.title = title;
 		this.contents = contents;
-		this.reply = reply;
+		this.repl = repl;
 		this.regdate = regdate;
 	}
 
@@ -52,11 +53,11 @@ public class QnaDto {
 	}
 
 	public String getReply() {
-		return reply;
+		return repl;
 	}
 
-	public void setReply(String reply) {
-		this.reply = reply;
+	public void setReply(String repl) {
+		this.repl = repl;
 	}
 
 	public Date getRegdate() {

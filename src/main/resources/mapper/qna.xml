@@ -5,19 +5,17 @@
 <mapper namespace="com.ssafy.happyhouse.model.mapper.QnaMapper">
 
 	<insert id="writeQna" parameterType="qnaDto">
-		insert into qna ( userid, title, contents, reply)
-		values ( #{userid}, #{title}, #{contents}, #{reply})
+		insert into qna ( userid, title, contents, repl)
+		values ( #{userid}, #{title}, #{contents}, #{repl})
 	</insert>
 
 	<select id="getQna" parameterType="int" resultType="qnaDto">
-		select no,userid, title, regdate, contents, reply
-		from qna
+		select no, userid, title, regdate, contents, repl from qna
 		where no = #{no}
 	</select>
 
 	<select id="searchAll" parameterType="pageBean" resultType="qnaDto">
-		select no, userid, title, regdate
-		from qna
+		select no, userid, title, regdate, contents, repl from qna
 		<where>
 			<if test="key != null and key != 'all' and word != null and word != ''">
 				${key} like concat('%',#{word},'%')
@@ -37,7 +35,7 @@
 	
 	<update id="modifyQna" parameterType="qnaDto">
 		update qna
-		set title = #{title}, content = #{content}, regdate = #{regdate}
+		set title = #{title}, contents = #{contents}, regdate = #{regdate}
 		where no=#{no} 
 	</update>
 	

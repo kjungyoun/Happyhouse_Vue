@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,7 @@ import com.ssafy.happyhouse.model.MemberDto;
 
 @RestController
 @RequestMapping("/qna.do")
+@CrossOrigin("*")
 public class QnaController {
 	
 	@Autowired
@@ -42,13 +44,19 @@ public class QnaController {
 	}
 	
 	@GetMapping("{no}")
-	public ResponseEntity<QnaDto> getQna(@PathVariable int no) {
+	public ResponseEntity<QnaDto> getQna(@PathVariable int no, HttpSession session) {
 		QnaDto dto = qnaService.getQna(no);
+		MemberDto curId = (MemberDto)session.getAttribute("userinfo");
+		System.out.println("================================="+curId);
+//		dto.setLoginId(curId.getUserid())
 		return new ResponseEntity<QnaDto>(dto,HttpStatus.OK);
 	}
 	
 	@GetMapping
-	public ResponseEntity<List<QnaDto>> searchAll(@RequestParam PageBean bean) {
+	public ResponseEntity<List<QnaDto>> searchAll(String key, String word) {
+		PageBean bean = new PageBean();
+		bean.setKey(key);
+		bean.setWord(word);
 		List<QnaDto> list = qnaService.searchAll(bean);
 		return new ResponseEntity<List<QnaDto>>(list,HttpStatus.OK);
 	}

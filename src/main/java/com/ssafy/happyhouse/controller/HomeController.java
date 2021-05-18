@@ -24,7 +24,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/qna", method =  RequestMethod.GET)
 	public String qna() {
-		return "qna.do";
+		return "qna";
 	}
 	
 }

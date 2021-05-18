@@ -36,6 +36,7 @@ public class MemberController {
 			MemberDto memberDto = memberService.login(map);
 			if(memberDto != null) {
 				session.setAttribute("userinfo", memberDto);
+				System.out.println("------------------------" + ((MemberDto) session.getAttribute("userinfo")).getUserid());
 			} else {
 				model.addAttribute("msg", "아이디 또는 비밀번호 확인 후 로그인해 주세요.");
 			}
