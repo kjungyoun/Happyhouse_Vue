@@ -22,4 +22,9 @@ public class HomeController {
 		return "notice";
 	}
 	
+	@RequestMapping(value = "/qna", method =  RequestMethod.GET)
+	public String qna() {
+		return "qna.do";
+	}
+	
 }
